@@ -60,7 +60,19 @@ public class PessoaFisica {
             }
 
             public void setDataNascimento(Date dataNascimento) {
-                this.dataNascimento = dataNascimento;
+                        LocalDate dataNascimentoFormatada = LocalDate.now();
+                        boolean dataNascimentoValido = true;
+                        String dataNascimento = scanner.nextLine();
+                        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        
+                        try {
+                                    dataNascimentoFormatada = LocalDate.parse(dataNascimentoString, formatador);
+                                    dataNascimentoValido = true;
+                                } catch (DateTimeParseException e) {
+                                    System.out.println("Formato inválido! Use o formato dd/MM/yyyy.");
+	            }
+
+            
             }
 
             public void setEmail(String email) {
