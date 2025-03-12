@@ -1,9 +1,6 @@
 import java.util.Date;
 
 public class PessoaFisica {
-//Objetivo: aplicar estudos de Tipagem, Objetos e Funções.
-
-        public class pessoaFisica {
             private String celular;
             private String cpf;
             private Date dataNascimento;
@@ -14,21 +11,7 @@ public class PessoaFisica {
             private String rg;
             private String sexo;
 
-
-
-            public pessoaFisica(String celular, String cpf, String email, String Endereco, int idade, String nome, String rg, String sexo) {
-                this.celular = celular;
-                this.cpf = cpf;
-                this.email = email;
-                this.Endereco = Endereco;
-                this.idade = idade;
-                this.nome = nome;
-                this.rg = rg;
-                this.sexo = sexo;
-                this.dataNascimento = new Date();
-            }
-
-//Criando Encapsulamento - Getters
+            //Criando Encapsulamento - Getters
 
             public String getCelular() {
                 return celular;
@@ -66,7 +49,7 @@ public class PessoaFisica {
                 return sexo;
             }
 
-//Criando Encapsulamento - Setters
+            //Criando Encapsulamento - Setters
 
             public void setCelular(String celular) {
                 this.celular = celular;
@@ -104,6 +87,5 @@ public class PessoaFisica {
                 this.sexo = sexo;
             }
 
-        }
 
 }
