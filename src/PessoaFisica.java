@@ -1,4 +1,8 @@
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 
 public class PessoaFisica {
             private String celular;
@@ -59,20 +63,25 @@ public class PessoaFisica {
                 this.cpf = cpf;
             }
 
-            public void setDataNascimento(Date dataNascimento) {
-                        LocalDate dataNascimentoFormatada = LocalDate.now();
-                        boolean dataNascimentoValido = true;
-                        String dataNascimento = scanner.nextLine();
+            public void setDataNascimento(String dataNascimentoString) {
+                        LocalDate dataNascimentoFormatada;
+                        boolean dataNascimentoInvalido = true;
                         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                        
-                        try {
-                                    dataNascimentoFormatada = LocalDate.parse(dataNascimentoString, formatador);
-                                    dataNascimentoValido = true;
-                                } catch (DateTimeParseException e) {
-                                    System.out.println("Formato inválido! Use o formato dd/MM/yyyy.");
-	            }
 
-            
+                        try {
+
+                            dataNascimentoFormatada = LocalDate.parse(dataNascimentoString, formatador);
+
+                            if (dataNascimentoInvalido == false) {
+
+                            }
+                            System.out.println(dataNascimentoFormatada);
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Formato inválido! Use o formato dd/MM/yyyy.");
+
+                            System.out.print("Insira a data novamente: ");
+
+	                    }
             }
 
             public void setEmail(String email) {
