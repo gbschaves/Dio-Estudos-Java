@@ -2,15 +2,15 @@ import java.util.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Scanner;
 
 
 public class PessoaFisica {
             private String celular;
             private String cpf;
-            private Date dataNascimento;
+            private LocalDate dataNascimento;
             private String email;
             private String Endereco;
-            private int idade;
             private String nome;
             private String rg;
             private String sexo;
@@ -25,7 +25,7 @@ public class PessoaFisica {
                 return cpf;
             }
 
-            public Date getDataNascimento() {
+            public LocalDate getDataNascimento() {
                 return dataNascimento;
             }
 
@@ -35,10 +35,6 @@ public class PessoaFisica {
 
             public String getEndereco() {
                 return Endereco;
-            }
-
-            public int getIdade() {
-                return idade;
             }
 
             public String getNome() {
@@ -56,32 +52,50 @@ public class PessoaFisica {
             //Criando Encapsulamento - Setters
 
             public void setCelular(String celular) {
+
+
+
                 this.celular = celular;
             }
 
-            public void setCpf(String cpf) {
+            public void setCpf() {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Insira o seu cpf: ");
+                System.out.println("*Somente Números*");
+                int cpf = scanner.nextInt();
+
+
+
+
+
+
+
                 this.cpf = cpf;
             }
 
-            public void setDataNascimento(String dataNascimentoString) {
+            public void setDataNascimento() {
+                        Scanner scanner = new Scanner(System.in);
+                        System.out.print("Data de Nascimento (dd/MM/yyyy): ");
+                        String dataNascimentoString = scanner.nextLine();
+
+
                         LocalDate dataNascimentoFormatada;
-                        boolean dataNascimentoInvalido = true;
                         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        Boolean flag = Data.isDataValid(dataNascimentoString, "dd/MM/yyyy");
+                        System.out.println(Data.isDataValid(dataNascimentoString, "dd/MM/yyyy"));
 
-                        try {
-
-                            dataNascimentoFormatada = LocalDate.parse(dataNascimentoString, formatador);
-
-                            if (dataNascimentoInvalido == false) {
-
+                        do {
+                            if (flag) {
+                                dataNascimentoFormatada = LocalDate.parse(dataNascimentoString, formatador);
+                                flag = true;
+                                this.dataNascimento = dataNascimentoFormatada;
+                            } else {
+                                System.out.println("Data inválida! Use o formato dd/MM/yyyy ou insira uma data válida.");
+                                System.out.print("Data de Nascimento (dd/MM/yyyy): ");
+                                dataNascimentoString = scanner.nextLine();
+                                flag = Data.isDataValid(dataNascimentoString, "dd/MM/yyyy");
                             }
-                            System.out.println(dataNascimentoFormatada);
-                        } catch (DateTimeParseException e) {
-                            System.out.println("Formato inválido! Use o formato dd/MM/yyyy.");
-
-                            System.out.print("Insira a data novamente: ");
-
-	                    }
+                        }while(!flag);
             }
 
             public void setEmail(String email) {
@@ -92,9 +106,6 @@ public class PessoaFisica {
                 Endereco = endereco;
             }
 
-            public void setIdade(int idade) {
-                this.idade = idade;
-            }
 
             public void setNome(String nome) {
                 this.nome = nome;
@@ -107,6 +118,5 @@ public class PessoaFisica {
             public void setSexo(String sexo) {
                 this.sexo = sexo;
             }
-
 
 }

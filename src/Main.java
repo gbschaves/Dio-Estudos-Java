@@ -22,22 +22,14 @@ public class Main {
 //        String email = scanner.nextLine();
 //        pf.setEmail(email);
 //
-//        System.out.print("CPF: ");
-//        String cpf = scanner.nextLine();
-//        pf.setCpf(cpf);
+
+         pf.setCpf();
 //
 //        System.out.print("RG");
 //        String rg = scanner.nextLine();
 //        pf.setRg(rg);
+//        pf.setDataNascimento();
 //
-//        System.out.print("Idade: ");
-//        int idade = scanner.nextInt();
-//        pf.setIdade(idade);
-
-        System.out.print("Data de Nascimento (dd/MM/yyyy): ");
-        String dataNascimentoString = scanner.nextLine();
-        pf.setDataNascimento(dataNascimentoString);
-
 //        System.out.print("Endereco: ");
 //        String endereco = scanner.nextLine();
 //        pf.setEndereco(endereco);
@@ -45,11 +37,9 @@ public class Main {
 //        System.out.print("Celular: ");
 //        String celular = scanner.nextLine();
 //        pf.setCelular(celular);
-
-
-
-
-
+//
+//        System.out.print("Sexo: ");
+//        String sexo = scanner.nextLine();
 
     }
 }
