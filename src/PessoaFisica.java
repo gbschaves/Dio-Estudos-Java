@@ -61,10 +61,30 @@ public class PessoaFisica {
             public void setCpf() {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Insira o seu cpf: ");
-                System.out.println("*Somente Números*");
-                int cpf = scanner.nextInt();
+                String cpf = scanner.nextLine();
+                cpf =cpf.replaceAll("[^0-9]", "");
+                boolean flag = false;
+
+                do {
+                    if (cpf.length() != 11) {
+                        System.out.println("O cpf deve ter 11 digitos");
+                        flag = true;
+                    } else {
+                        char[] cpfArray = cpf.toCharArray();
+                        flag = false;
+                    }
+                }while(flag);
 
 
+
+
+
+
+                int cpfCount = cpf.length();
+                int reverse = 10;
+                for (int i = 0; i < cpfCount; i++) {
+                    int cpfValidation = char[i] * reverso
+                }
 
 
 
