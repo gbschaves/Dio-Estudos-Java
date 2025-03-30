@@ -60,30 +60,67 @@ public class PessoaFisica {
 
             public void setCpf() {
                 Scanner scanner = new Scanner(System.in);
-                System.out.println("Insira o seu cpf: ");
-                String cpf = scanner.nextLine();
-                cpf =cpf.replaceAll("[^0-9]", "");
-                boolean flag = false;
+                String cpf;
+                int[] cpfArray;
+                boolean flag;
 
                 do {
-                    if (cpf.length() != 11) {
-                        System.out.println("O cpf deve ter 11 digitos");
-                        flag = true;
-                    } else {
-                        char[] cpfArray = cpf.toCharArray();
-                        flag = false;
+                    System.out.println("Insira o seu CPF: ");
+                    cpf = scanner.nextLine().replaceAll("[^0-9]", ""); // Remove caracteres não numéricos
+                    flag = cpf.length() == 11;
+
+                    if (!flag) {
+                        System.out.println("CPF incorreto, tente novamente!");
                     }
-                }while(flag);
+                } while (!flag);
 
 
+                cpfArray = new int[11];
+                for (int i = 0; i < 11; i++) {
+                    cpfArray[i] = Character.getNumericValue(cpf.charAt(i));
+                }
 
-
-
-
-                int cpfCount = cpf.length();
                 int reverse = 10;
-                for (int i = 0; i < cpfCount; i++) {
-                    int cpfValidation = char[i] * reverso
+                int cpfAccumulator = 0;
+                int validador1;
+                int validador2;
+                for (int i = 0; i < 10; i++) {
+                    cpfAccumulator = cpfAccumulator + (cpfArray[i] * reverse);
+                    reverse -= 1;
+
+                    if (reverse < 2) {
+                        reverse = 11;
+
+                        int digito = (cpfAccumulator % 11);
+
+                        if (digito < 2 ) {
+                            validador1 = 0;
+                        } else {
+                            validador1 = 11 - digito;
+                        }
+
+                    }
+
+                }
+
+
+                for (int i = 0; i < 11; i++) {
+                    cpfAccumulator = cpfAccumulator + (cpfArray[i] * reverse);
+                    reverse -= 1;
+
+                    if (reverse < 2) {
+                        reverse = 11;
+
+                        int digito = (cpfAccumulator % 11);
+
+                        if (digito < 2 ) {
+                            validador2 = 0;
+                        } else {
+                            validador2 = 11 - digito;
+                        }
+
+                    }
+
                 }
 
 
@@ -95,25 +132,18 @@ public class PessoaFisica {
 
             public void setDataNascimento() {
                         Scanner scanner = new Scanner(System.in);
-                        System.out.print("Data de Nascimento (dd/MM/yyyy): ");
-                        String dataNascimentoString = scanner.nextLine();
-
-
                         LocalDate dataNascimentoFormatada;
-                        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                        Boolean flag = Data.isDataValid(dataNascimentoString, "dd/MM/yyyy");
-                        System.out.println(Data.isDataValid(dataNascimentoString, "dd/MM/yyyy"));
-
+                        System.out.print("Data de Nascimento (dd/MM/yyyy): ");
+                        boolean flag;
                         do {
-                            if (flag) {
+                            String dataNascimentoString = scanner.nextLine();
+                            DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                            flag = Data.isDataValid(dataNascimentoString, "dd/MM/yyyy");
+
+                            if (!flag) {
                                 dataNascimentoFormatada = LocalDate.parse(dataNascimentoString, formatador);
                                 flag = true;
                                 this.dataNascimento = dataNascimentoFormatada;
-                            } else {
-                                System.out.println("Data inválida! Use o formato dd/MM/yyyy ou insira uma data válida.");
-                                System.out.print("Data de Nascimento (dd/MM/yyyy): ");
-                                dataNascimentoString = scanner.nextLine();
-                                flag = Data.isDataValid(dataNascimentoString, "dd/MM/yyyy");
                             }
                         }while(!flag);
             }
