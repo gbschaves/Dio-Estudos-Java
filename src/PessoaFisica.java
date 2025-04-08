@@ -61,7 +61,6 @@ public class PessoaFisica {
             public void setCpf() {
                 Scanner scanner = new Scanner(System.in);
                 String cpf;
-                int[] cpfArray;
                 boolean flag;
 
                 do {
@@ -75,56 +74,7 @@ public class PessoaFisica {
                 } while (!flag);
 
 
-                cpfArray = new int[11];
-                for (int i = 0; i < 11; i++) {
-                    cpfArray[i] = Character.getNumericValue(cpf.charAt(i));
-                }
-
-                int reverse = 10;
-                int cpfAccumulator = 0;
-                int validador1;
-                int validador2;
-                for (int i = 0; i < 10; i++) {
-                    cpfAccumulator = cpfAccumulator + (cpfArray[i] * reverse);
-                    reverse -= 1;
-
-                    if (reverse < 2) {
-                        reverse = 11;
-
-                        int digito = (cpfAccumulator % 11);
-
-                        if (digito < 2 ) {
-                            validador1 = 0;
-                        } else {
-                            validador1 = 11 - digito;
-                        }
-
-                    }
-
-                }
-
-
-                for (int i = 0; i < 11; i++) {
-                    cpfAccumulator = cpfAccumulator + (cpfArray[i] * reverse);
-                    reverse -= 1;
-
-                    if (reverse < 2) {
-                        reverse = 11;
-
-                        int digito = (cpfAccumulator % 11);
-
-                        if (digito < 2 ) {
-                            validador2 = 0;
-                        } else {
-                            validador2 = 11 - digito;
-                        }
-
-                    }
-
-                }
-
-
-
+                ValidadorCpf.isCPFValid(cpf);
 
 
                 this.cpf = cpf;
