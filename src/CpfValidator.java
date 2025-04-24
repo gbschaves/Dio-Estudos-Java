@@ -1,4 +1,4 @@
-public class ValidadorCpf {
+public class CpfValidator {
     public static boolean isCPFValid(String cpf) {
         boolean valido1 = true;
         boolean valido2 = true;

@@ -1,11 +1,10 @@
-import java.util.Date;
+import javax.xml.validation.Validator;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 
-public class PessoaFisica {
+public class NaturalPerson {
             private String celular;
             private String cpf;
             private LocalDate dataNascimento;
@@ -46,7 +45,17 @@ public class PessoaFisica {
             }
 
             public String getSexo() {
-                return sexo;
+                Scanner scanner = new Scanner(System.in);
+                boolean validator = false;
+                System.out.println("Selecione uma sexo: ");
+                System.out.println("1 - Masculino");
+                System.out.println("2 - Feminino");
+                System.out.println("3 - Outro");
+
+                Integer sexo = scanner.nextInt();
+                validator = SelectGender.ValidOptionGender(sexo);
+
+                this.sexo = validator;
             }
 
             //Criando Encapsulamento - Setters
@@ -74,7 +83,7 @@ public class PessoaFisica {
                 } while (!flag);
 
 
-                ValidadorCpf.isCPFValid(cpf);
+                CpfValidator.isCPFValid(cpf);
 
 
                 this.cpf = cpf;

@@ -1,13 +1,8 @@
-
-import javax.swing.*;
-import java.awt.event.ActionListener;
-
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        PessoaFisica pf = new PessoaFisica();
+        NaturalPerson pf = new NaturalPerson();
         Scanner scanner = new Scanner(System.in);
 
 
@@ -23,7 +18,7 @@ public class Main {
 //        pf.setEmail(email);
 //
 
-         pf.setCpf();
+//        pf.setCpf();
 //
 //        System.out.print("RG");
 //        String rg = scanner.nextLine();
