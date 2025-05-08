@@ -12,7 +12,7 @@ public class NaturalPerson {
             private String Endereco;
             private String nome;
             private String rg;
-            private String sexo;
+            private String genero;
 
             //Criando Encapsulamento - Getters
 
@@ -44,26 +44,13 @@ public class NaturalPerson {
                 return rg;
             }
 
-            public String getSexo() {
-                Scanner scanner = new Scanner(System.in);
-                boolean validator = false;
-                System.out.println("Selecione uma sexo: ");
-                System.out.println("1 - Masculino");
-                System.out.println("2 - Feminino");
-                System.out.println("3 - Outro");
-
-                Integer sexo = scanner.nextInt();
-                validator = SelectGender.ValidOptionGender(sexo);
-
-                this.sexo = validator;
+            public String getGenero() {
+               return genero;
             }
 
             //Criando Encapsulamento - Setters
 
             public void setCelular(String celular) {
-
-
-
                 this.celular = celular;
             }
 
@@ -124,8 +111,8 @@ public class NaturalPerson {
                 this.rg = rg;
             }
 
-            public void setSexo(String sexo) {
-                this.sexo = sexo;
+            public void setSexo(String genero) {
+                this.genero = SelectGender.ValidOptionGender();;
             }
 
 }

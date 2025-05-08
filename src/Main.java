@@ -34,7 +34,7 @@ public class Main {
 //        pf.setCelular(celular);
 //
 //        System.out.print("Sexo: ");
-//        String sexo = scanner.nextLine();
+        String sexo = scanner.nextLine();
 
     }
 }
