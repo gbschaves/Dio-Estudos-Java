@@ -18,7 +18,7 @@ public class Main {
 //        pf.setEmail(email);
 //
 
-//        pf.setCpf();
+      pf.setCpf();
 //
 //        System.out.print("RG");
 //        String rg = scanner.nextLine();
@@ -32,9 +32,7 @@ public class Main {
 //        System.out.print("Celular: ");
 //        String celular = scanner.nextLine();
 //        pf.setCelular(celular);
-//
-//        System.out.print("Sexo: ");
-        String sexo = scanner.nextLine();
+//        pf.setGenero();
 
     }
 }

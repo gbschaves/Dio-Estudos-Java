@@ -58,21 +58,25 @@ public class PessoaFisicaModel {
                 Scanner scanner = new Scanner(System.in);
                 String cpf;
                 boolean flag;
+                boolean validador;
 
                 do {
+
                     System.out.println("Insira o seu CPF: ");
                     cpf = scanner.nextLine().replaceAll("[^0-9]", ""); // Remove caracteres não numéricos
                     flag = cpf.length() == 11;
 
                     if (!flag) {
                         System.out.println("CPF incorreto, tente novamente!");
+                        cpf = scanner.nextLine().replaceAll("[^0-9]", "");
+                        flag = cpf.length() == 11;
                     }
-                } while (!flag);
 
 
-                boolean valido1 = true;
-                boolean valido2 = true;
+
+
                 int[] cpfArray;
+
                 cpfArray = new int[11];
                 for (int i = 0; i < 11; i++) {
                     cpfArray[i] = Character.getNumericValue(cpf.charAt(i));
@@ -80,61 +84,65 @@ public class PessoaFisicaModel {
 
                 int reverse = 10;
                 int cpfAccumulator = 0;
-                int validador1;
-                int validador2;
+                int validador1 = 0;
+                int validador2 = 0;
 
+
+                for (int i = 0; i < 9; i++) {
+                    cpfAccumulator = cpfAccumulator + (cpfArray[i] * reverse);
+                    reverse -= 1;
+
+                    if (reverse < 2) {
+                        int digito = cpfAccumulator % 11;
+
+                        if (digito < 2 ) {
+                            validador1 = 0;
+                            reverse = 11;
+                            cpfAccumulator = 0;
+                        } else if(digito >= 2) {
+                            validador1 = 11 - digito;
+                            reverse = 11;
+                            cpfAccumulator = 0;
+                        }
+
+                    }
+
+                }
 
                 for (int i = 0; i < 10; i++) {
                     cpfAccumulator = cpfAccumulator + (cpfArray[i] * reverse);
                     reverse -= 1;
-
-
-                    if (reverse < 2) {
-                        int digito = (cpfAccumulator % 11);
-
-                        if (digito < 2 ) {
-                            validador1 = 0;
-                        } else if(digito >= 2) {
-                            validador1 = 11 - digito;
-                        } else {
-                            valido1 = false;
-                        }
-
-                    }
-
-                }
-
-
-                for (int i = 0; i < 11; i++) {
-                    cpfAccumulator = cpfAccumulator + (cpfArray[i] * reverse);
-                    reverse -= 1;
-
+                    System.out.println(cpfArray[i]);
+                    System.out.println(cpfAccumulator);
 
                     if (reverse < 2) {
-                        reverse = 11;
 
-                        int digito = (cpfAccumulator % 11);
+                        int digito = cpfAccumulator % 11;
 
                         if (digito < 2) {
                             validador2 = 0;
+                            System.out.println(validador2);
                         } else if (digito >= 2) {
                             validador2 = 11 - digito;
-                        } else {
-                            valido2 = false;
+                            System.out.println(validador2);
                         }
                     }
 
                 }
 
-                if (!(valido1 && valido2)) {
-                    System.out.println("CPF valido!");
 
-                }else{
-                    System.out.println("CPF invalido!");
 
-                }
 
-                this.cpf = cpf;
+                    if (validador1 == cpfArray[9] && validador2 == cpfArray[10]) {
+                        validador = true;
+                        this.cpf = cpf;
+
+                    } else {
+                        System.out.println("CPF invalido!");
+                        validador = false;
+                    }
+                } while (!flag || !validador);
+
             }
 
             public void setDataNascimento() {
@@ -170,7 +178,6 @@ public class PessoaFisicaModel {
                 Endereco = endereco;
             }
 
-
             public void setNome(String nome) {
                 this.nome = nome;
             }
@@ -179,41 +186,49 @@ public class PessoaFisicaModel {
                 this.rg = rg;
             }
 
-            public void setSexo(String genero) {
+            public void setGenero() {
 
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Selecione um genero: ");
                 System.out.println("1 - Masculino");
                 System.out.println("2 - Feminino");
                 System.out.println("3 - Outro");
-
                 Integer opcaoGenero = scanner.nextInt();
-                boolean genderoValido = false ;
-                String generoFinal = "";
-
-
-                try {
-                    switch (opcaoGenero) {
-                        case 1:
-                            opcaoGenero = 1;
-                            genderoValido = true;
-                            generoFinal = "Masculino";
-                        case 2:
-                            opcaoGenero = 2;
-                            genderoValido = true;
-                            generoFinal = "Feminino";
-                        case 3:
-                            opcaoGenero = 3;
-                            genderoValido = true;
-                            generoFinal = "Outro";
-                        default:
-                            genderoValido = false;
-                    }
-
+                try{
+                    opcaoGenero = scanner.nextInt();
                 } catch (InputMismatchException e) {
                     System.out.println("Selecione uma opção valida: ");
                 }
 
+                System.out.println(opcaoGenero);
+                boolean genderoValido = true ;
+                String generoFinal = "";
+
+                do{
+                                        switch (opcaoGenero) {
+                            case 1:
+                                genderoValido = true;
+                                generoFinal = "Masculino";
+                                break;
+                            case 2:
+                                genderoValido = true;
+                                generoFinal = "Feminino";
+                                break;
+                            case 3:
+                                genderoValido = true;
+                                generoFinal = "Outro";
+                                break;
+                            default:
+                                genderoValido = false;
+                                System.out.println("Selecione uma opção valida: ");
+                                opcaoGenero = scanner.nextInt();
+                                break;
+                        }
+
+
+                }while(!genderoValido);
+
+                System.out.println(generoFinal);
                 this.genero = generoFinal;
             }
 
