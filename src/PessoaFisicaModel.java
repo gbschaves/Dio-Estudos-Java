@@ -59,6 +59,8 @@ public class PessoaFisicaModel {
                 String cpf;
                 boolean flag;
                 boolean validador;
+                boolean validadorIguais = false;
+                Integer validadorContadorIguais = 0;
 
                 do {
 
@@ -80,6 +82,13 @@ public class PessoaFisicaModel {
                 cpfArray = new int[11];
                 for (int i = 0; i < 11; i++) {
                     cpfArray[i] = Character.getNumericValue(cpf.charAt(i));
+                    if(cpfArray[0] == cpfArray[i]) {
+                        validadorContadorIguais++;
+                    }
+
+                    if(validadorContadorIguais == 11) {
+                        validadorIguais = true;
+                    }
                 }
 
                 int reverse = 10;
@@ -133,7 +142,7 @@ public class PessoaFisicaModel {
 
 
 
-                    if (validador1 == cpfArray[9] && validador2 == cpfArray[10]) {
+                    if (validador1 == cpfArray[9] && validador2 == cpfArray[10] && !validadorIguais) {
                         validador = true;
                         this.cpf = cpf;
 
