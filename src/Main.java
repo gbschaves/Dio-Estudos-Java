@@ -18,7 +18,7 @@ public class Main {
 //        pf.setEmail(email);
 //
 
-      pf.setCpf();
+          pf.setCpf();
 //
 //        System.out.print("RG");
 //        String rg = scanner.nextLine();

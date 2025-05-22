@@ -4,21 +4,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
-public class PessoaFisicaModel {
-            private String celular;
+public class PessoaFisicaModel extends PessoaModel {
             private String cpf;
             private LocalDate dataNascimento;
-            private String email;
-            private String Endereco;
             private String nome;
-            private String rg;
             private String genero;
 
             //Criando Encapsulamento - Getters
-
-            public String getCelular() {
-                return celular;
-            }
 
             public String getCpf() {
                 return cpf;
@@ -28,20 +20,8 @@ public class PessoaFisicaModel {
                 return dataNascimento;
             }
 
-            public String getEmail() {
-                return email;
-            }
-
-            public String getEndereco() {
-                return Endereco;
-            }
-
             public String getNome() {
                 return nome;
-            }
-
-            public String getRg() {
-                return rg;
             }
 
             public String getGenero() {
@@ -50,17 +30,13 @@ public class PessoaFisicaModel {
 
             //Criando Encapsulamento - Setters
 
-            public void setCelular(String celular) {
-                this.celular = celular;
-            }
-
             public void setCpf() {
                 Scanner scanner = new Scanner(System.in);
                 String cpf;
                 boolean flag;
                 boolean validador;
                 boolean validadorIguais = false;
-                Integer validadorContadorIguais = 0;
+                int validadorContadorIguais = 0;
 
                 do {
 
@@ -72,10 +48,9 @@ public class PessoaFisicaModel {
                         System.out.println("CPF incorreto, tente novamente!");
                         cpf = scanner.nextLine().replaceAll("[^0-9]", "");
                         flag = cpf.length() == 11;
+                    } else {
+
                     }
-
-
-
 
                 int[] cpfArray;
 
@@ -121,8 +96,6 @@ public class PessoaFisicaModel {
                 for (int i = 0; i < 10; i++) {
                     cpfAccumulator = cpfAccumulator + (cpfArray[i] * reverse);
                     reverse -= 1;
-                    System.out.println(cpfArray[i]);
-                    System.out.println(cpfAccumulator);
 
                     if (reverse < 2) {
 
@@ -130,10 +103,8 @@ public class PessoaFisicaModel {
 
                         if (digito < 2) {
                             validador2 = 0;
-                            System.out.println(validador2);
                         } else if (digito >= 2) {
                             validador2 = 11 - digito;
-                            System.out.println(validador2);
                         }
                     }
 
@@ -147,7 +118,7 @@ public class PessoaFisicaModel {
                         this.cpf = cpf;
 
                     } else {
-                        System.out.println("CPF invalido!");
+                        System.out.println("CPF invalido, insira novamente: ");
                         validador = false;
                     }
                 } while (!flag || !validador);
@@ -179,20 +150,8 @@ public class PessoaFisicaModel {
                         }while(flag);
             }
 
-            public void setEmail(String email) {
-                this.email = email;
-            }
-
-            public void setEndereco(String endereco) {
-                Endereco = endereco;
-            }
-
             public void setNome(String nome) {
                 this.nome = nome;
-            }
-
-            public void setRg(String rg) {
-                this.rg = rg;
             }
 
             public void setGenero() {
@@ -202,7 +161,7 @@ public class PessoaFisicaModel {
                 System.out.println("1 - Masculino");
                 System.out.println("2 - Feminino");
                 System.out.println("3 - Outro");
-                Integer opcaoGenero = scanner.nextInt();
+                int opcaoGenero = scanner.nextInt();
                 try{
                     opcaoGenero = scanner.nextInt();
                 } catch (InputMismatchException e) {
